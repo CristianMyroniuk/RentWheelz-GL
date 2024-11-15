@@ -1,0 +1,31 @@
+<div class="container d-flex justify-content-center align-items-center vh-100 vw-100" style="background-image: url('assets/images/porsche.jpeg'); background-size: cover; background-position: center; max-width: 100%;">
+    <div class="w-50 p-4 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+        <h2 class="mb-4 text-center text-white" style="font-weight: bold;">Login</h2>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+                <input type="email" formControlName="email" class="form-control text-white" id="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="background-color: transparent; border-color: white; font-weight: bold;">
+                    <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="text-warning">
+                        <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</div>
+                        <div *ngIf="loginForm.get('email')?.errors?.['email']">Invalid email format.</div>
+                    </div>
+            </div>
+            <div class="form-group mb-3">
+                <input type="password" formControlName="password" class="form-control text-white" id="password" placeholder="Password" required style="background-color: transparent; font-weight: bold;">
+                <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)" class="text-warning">
+                    <div *ngIf="loginForm.get('password')?.errors?.required">Password is required.</div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary w-100" style="background-color: #004085; border-color: #003366;">Login</button>
+            <div class="text-start mt-3">
+                <label class="text-white" style="font-weight: bold;">Don't have an account? <a routerLink="/register" class="text-white" style="font-weight: bold;">Register</a></label>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    ::placeholder {
+        color: white !important;
+        font-weight: bold;
+    }
+</style>

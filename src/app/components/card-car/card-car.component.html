@@ -1,0 +1,10 @@
+<div>
+  <div class="card bg-white text-black" style="width: 18rem; margin-top:20px">
+    <img [src]="car.imageUrl" alt="Car Image" class="card-img-top">
+    <div class="card-body">
+      <h5 class="card-title">{{ car.carModel }}</h5>
+      <p class="card-text">Rs. ${{ car.pricePerHour | number }}/hour</p>
+      <button (click)="reserveCar()" class="btn btn-primary w-40" style="background-color: transparent; border-color: #003366;"><span style="color:#003366;">RESERVE</span></button>
+    </div>
+</div>
+</div>

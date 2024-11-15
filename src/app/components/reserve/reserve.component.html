@@ -1,0 +1,31 @@
+<div class="modal fade" id="reserveModal" #reserveModal tabindex="-1" aria-labelledby="reserveModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title w-100 text-center" id="reserveModalLabel">Reserve {{ car?.carModel }}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="reserveForm">
+            <div class="mb-3">
+              <label for="dateTimePick" class="form-label">Pickup Date</label>
+              <input type="datetime-local" id="dateTimePick" formControlName="dateTimePickup" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="dateTimeReturn" class="form-label">Return Date</label>
+              <input type="datetime-local" id="dateTimeReturn" formControlName="dateTimeReturn" class="form-control" required />
+            </div>
+            <div class="mb-3">
+              <label for="passenger" class="form-label">Passengers</label>
+              <input type="number" id="passenger" formControlName="passenger" class="form-control" min="1" required />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="onReserve()">Reserve</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

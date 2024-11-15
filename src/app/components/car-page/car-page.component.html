@@ -1,0 +1,9 @@
+<div class="container d-flex justify-content-center align-items-center vh-100 vw-100 mt-4">
+    <div class="row mt-6">
+      <div class="col-md-4" *ngFor="let car of cars">
+        <app-card-car [car]="car" (reserveClicked)="openReserveModal(car)" ></app-card-car>
+      </div>
+    </div>
+</div>
+
+<app-reserve></app-reserve>

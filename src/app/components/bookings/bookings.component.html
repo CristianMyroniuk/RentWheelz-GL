@@ -1,0 +1,40 @@
+<div class="container d-flex justify-content-center align-items-center vh-100 vw-100 mt-4" >
+
+  <!-- Booking Cards -->
+  <div class="row mt-4">
+      <div 
+        class="col-md-6 col-lg-4 mb-4" 
+        *ngFor="let book of booking">
+          <div class="card shadow-sm">
+              <img 
+                [src]="book.car.imageUrl" 
+                class="card-img-top" >
+              <div class="card-body">
+                  <h5 class="card-title">{{ book.car.carModel }}</h5>
+                  <p class="card-text">
+                      From: {{ book.reservation.dateTimePickup }} to {{ book.reservation.dateTimeReturn }}<br>
+                      Total: Rs. {{ book.car.pricePerHour }}
+                  </p>
+                  <p 
+                    class="badge" 
+                    [ngClass]="{
+                        'bg-success': book.status === 'CONFIRMED',
+                        'bg-primary': book.status === 'COMPLETED',
+                        'bg-warning': book.status === 'PENDING',
+                        'bg-danger': book.status === 'CANCELLED'
+                    }">
+                      {{ book.status }}
+                  </p>
+                    <div class="d-flex justify-content-start">
+                      <button 
+                      class="btn btn-primary" 
+                      [disabled]="book.status !== 'CONFIRMED'" 
+                      (click)="cancelBooking(book)">
+                        Cancel Ride
+                      </button>
+                    </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>

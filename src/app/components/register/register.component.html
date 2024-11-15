@@ -1,0 +1,78 @@
+<div class="container d-flex justify-content-center align-items-center vh-100 vw-100" style="background-image: url('assets/images/porsche.jpeg'); background-size: cover; background-position: center; max-width: 100%;">
+    <div class="w-50 p-4 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+        <h2 class="mb-4 text-center text-white" style="font-weight: bold;">Register</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="form-group mb-3">
+                <input type="text" formControlName="fullName" class="form-control text-white" id="fullName" placeholder="Full Name" required style="background-color: transparent; border-color: white; font-weight: bold;">
+                <div *ngIf="registerForm.get('fullName')?.invalid && registerForm.get('fullName')?.touched" class="text-warning">
+                    Full Name is required.
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="password" formControlName="password" class="form-control text-white" id="password" placeholder="Password" required style="background-color: transparent; border-color: white; font-weight: bold;">
+                    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-warning">
+                        <div *ngIf="registerForm.get('password')?.errors?.['required']">Password is required.</div>
+                        <div *ngIf="registerForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters long.</div>
+                      </div>
+                </div>
+                <div class="col-md-6">
+                    <input type="password" formControlName="confirmPassword" class="form-control text-white" id="confirmPassword" placeholder="Confirm Password" required style="background-color: transparent; border-color: white; font-weight: bold;">
+                    <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="text-warning">
+                        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']">Confirm Password is required.</div>
+                        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['minlength']">Confirm Password must be at least 6 characters long.</div>
+                        <div *ngIf="registerForm.get('confirmPassword')?.errors?.['mustMatch']">Passwords must match.</div>
+                      </div>
+                </div>
+            </div>
+            
+            <div class="row mb-3">
+                <div class="col-md-6">
+                    <input type="email" formControlName="email" class="form-control text-white" id="email" placeholder="Email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" style="background-color: transparent; border-color: white; font-weight: bold;">
+                    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-warning">
+                        <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
+                        <div *ngIf="registerForm.get('email')?.errors?.['email']">Invalid email format.</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" formControlName="licenseNumber" class="form-control text-white" id="licenseNumber" placeholder="License Number" required style="background-color: transparent; border-color: white; font-weight: bold;">
+                    <div *ngIf="registerForm.get('licenseNumber')?.invalid && registerForm.get('licenseNumber')?.touched" class="text-warning">
+                        License Number is required.
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group form-check mb-3">
+                <input type="checkbox" formControlName="terms" class="form-check-input" id="terms">
+                <label class="form-check-label text-white" for="terms" style="font-weight: bold;">Terms and Conditions</label>
+                <div *ngIf="registerForm.get('terms')?.invalid && registerForm.get('terms')?.touched" class="text-warning">
+                    You must accept the terms and conditions.
+                </div>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100" style="background-color: #004085; border-color: #003366;">Register</button>
+            <div class="text-start mt-3">
+                <label class="text-white" style="font-weight: bold;">Already have an account? <a routerLink="/login" class="text-white" style="font-weight: bold; text-decoration: underline;">Login</a></label>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    ::placeholder {
+        color: #cccccc !important;
+        font-weight: bold;
+    }
+    .text-warning {
+        color: #ffc107 !important;
+        font-weight: bold;
+    }
+    .form-control:focus {
+        border-color: #ffffff !important;
+        box-shadow: none !important;
+    }
+    .btn-primary:hover {
+        background-color: #003366;
+    }
+</style>
